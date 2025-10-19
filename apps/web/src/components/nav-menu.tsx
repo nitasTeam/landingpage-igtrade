@@ -6,16 +6,33 @@ import {
     NavigationMenuTrigger,
     NavigationMenuContent,
   } from "@/components/ui/navigation-menu";
-  import { NavLink } from "react-router";
+  import { NavLink, Link } from "react-router";
   import type { ComponentProps } from "react";
   
   export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
     <NavigationMenu {...props}>
       <NavigationMenuList className="!border-none gap-3 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
         <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <NavLink to="/" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all text-black hover:bg-gray-100 hover:text-black h-9 px-4 py-2">Tentang Kami</NavLink>
-          </NavigationMenuLink>
+          <Link 
+            to="/about" 
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all h-9 px-4 py-2"
+            style={{
+              color: window.location.pathname === '/about' ? 'rgba(219, 239, 255, 1)' : 'rgba(0, 0, 0, 1)',
+              backgroundColor: window.location.pathname === '/about' ? 'rgba(29, 152, 196, 1)' : 'transparent'
+            }}
+            onMouseEnter={(e) => {
+              if (window.location.pathname !== '/about') {
+                e.currentTarget.style.backgroundColor = '#f3f4f6';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (window.location.pathname !== '/about') {
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }
+            }}
+          >
+            Tentang Kami
+          </Link>
         </NavigationMenuItem>
 
         <NavigationMenuItem>

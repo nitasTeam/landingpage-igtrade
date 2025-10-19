@@ -48,7 +48,10 @@ export default function Home() {
 
 			<section className="mt-[100px] px-4">
 				<div className="max-w-4xl mx-auto text-left sm:text-center">
-					<span className="inline-block rounded-full bg-blue-100 text-blue-700 px-4 py-1 text-sm font-medium">
+					<span className="inline-block px-4 py-1 text-sm font-medium uppercase" style={{
+						backgroundColor: 'rgba(245, 245, 245, 1)',
+						color: 'rgba(29, 152, 196, 1)'
+					}}>
 						Layanan Kami
 					</span>
 					<h2 className="mt-6 font-serif font-medium text-[28px] leading-[150%] sm:text-[32px] lg:text-[40px] tracking-[0px] text-black">
@@ -136,7 +139,10 @@ export default function Home() {
 		{/* Produk Kami section */}
 		<section className="mt-[100px] sm:mt-[200px] px-4">
 				<div className="max-w-5xl mx-auto text-left sm:text-center">
-					<span className="inline-block rounded-full bg-blue-100 text-blue-700 px-4 py-1 text-sm font-medium">
+					<span className="inline-block px-4 py-1 text-sm font-medium uppercase" style={{
+						backgroundColor: 'rgba(245, 245, 245, 1)',
+						color: 'rgba(29, 152, 196, 1)'
+					}}>
 						Produk Kami
 					</span>
 					{/* <h2 className="mt-6 font-serif font-medium text-[40px] leading-[150%] tracking-[0px] text-black">
