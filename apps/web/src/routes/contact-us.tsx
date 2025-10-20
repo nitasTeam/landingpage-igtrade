@@ -368,11 +368,8 @@ ${formData.message}
                       Alamat
                     </h3>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)]">
-                      Jl. Sudirman No. 123
-                      <br />
-                      Jakarta Pusat 10270
-                      <br />
-                      Indonesia
+                    JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara,<br />
+                    Kec. Penjaringan, Kota Adm. Jakarta Utara, Provinsi DKI Jakarta, 14460
                     </p>
                   </div>
                 </div>
