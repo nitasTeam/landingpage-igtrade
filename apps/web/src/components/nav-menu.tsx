@@ -70,9 +70,26 @@ import {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <NavLink to="/contact-us" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all text-black hover:bg-gray-100 hover:text-black h-9 px-4 py-2">Hubungi Kami</NavLink>
-          </NavigationMenuLink>
+          <Link 
+            to="/contact-us" 
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all h-9 px-4 py-2"
+            style={{
+              color: window.location.pathname === '/contact-us' ? 'rgba(219, 239, 255, 1)' : 'rgba(0, 0, 0, 1)',
+              backgroundColor: window.location.pathname === '/contact-us' ? 'rgba(29, 152, 196, 1)' : 'transparent'
+            }}
+            onMouseEnter={(e) => {
+              if (window.location.pathname !== '/contact-us') {
+                e.currentTarget.style.backgroundColor = '#f3f4f6';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (window.location.pathname !== '/contact-us') {
+                e.currentTarget.style.backgroundColor = 'transparent';
+              }
+            }}
+          >
+            Hubungi Kami
+          </Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

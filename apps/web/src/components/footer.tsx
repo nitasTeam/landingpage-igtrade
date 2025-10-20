@@ -30,11 +30,13 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Phone + Back to Top */}
+          {/* Phone + Email + Back to Top */}
           <div className="flex flex-row items-center md:items-center gap-32">
             <div>
               <div className="text-xs uppercase tracking-wide text-gray-500">Phone Number</div>
               <p className="mt-2 text-sm text-gray-700">+62 877-7555-9883</p>
+              <div className="text-xs uppercase tracking-wide text-gray-500 mt-4">Email</div>
+              <p className="mt-2 text-sm text-gray-700">info@infinityglobalindo.com</p>
             </div>
             <Button variant="outline" onClick={scrollToTop} className="!text-black !bg-white !border-gray-300 hover:!bg-gray-100 hover:!text-black">Back to Top</Button>
           </div>
