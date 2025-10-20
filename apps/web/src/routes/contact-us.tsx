@@ -54,7 +54,7 @@ Pesan:
 ${formData.message}
 `.trim();
 
-      const mailtoLink = `mailto:info@infinityglobalindo.com?subject=Kontak dari Website - ${formData.subject}&body=${encodeURIComponent(
+      const mailtoLink = `mailto:halo@igtrade.id?subject=Kontak dari Website - ${formData.subject}&body=${encodeURIComponent(
         emailContent,
       )}`;
 
@@ -322,7 +322,7 @@ ${formData.message}
                       Email
                     </h3>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)]">
-                      info@infinityglobalindo.com
+                      halo@igtrade.id
                     </p>
                   </div>
                 </div>
