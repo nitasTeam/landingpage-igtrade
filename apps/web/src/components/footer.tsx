@@ -25,8 +25,14 @@ export const Footer = () => {
           <div className="flex-1">
             <div className="text-xs uppercase tracking-wide text-gray-500">Address</div>
             <p className="mt-2 text-sm leading-relaxed text-gray-700">
+              <span className="font-medium">Office:</span><br />
               JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara,<br />
-              Kec. Penjaringan, Kota Adm. Jakarta Utara, Provinsi DKI Jakarta, Kode Pos: 14460
+              Kec. Penjaringan, Kota Adm. Jakarta Utara, DKI Jakarta, 14460
+            </p>
+            <p className="mt-3 pt-3 text-sm leading-relaxed text-gray-700 border-t border-gray-300">
+              <span className="font-medium">Workshop:</span><br />
+              Ruko Kopi Mas Lantai 3, Jl Kopi 4 L, Roa Malaka Tambora<br />
+              Jakarta Barat, DKI Jakarta 11230
             </p>
           </div>
 

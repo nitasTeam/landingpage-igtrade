@@ -368,8 +368,10 @@ ${formData.message}
                       Alamat
                     </h3>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)]">
-                    JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara,<br />
-                    Kec. Penjaringan, Kota Adm. Jakarta Utara, Provinsi DKI Jakarta, 14460
+                      <span className="font-medium text-[rgba(40,40,40,1)]">Office:</span> JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara, Kec. Penjaringan, Kota Adm. Jakarta Utara, DKI Jakarta, 14460
+                    </p>
+                    <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)] mt-2">
+                      <span className="font-medium text-[rgba(40,40,40,1)]">Workshop:</span> Ruko Kopi Mas Lantai 3, Jl Kopi 4 L, Roa Malaka Tambora, Jakarta Barat, DKI Jakarta, 11230
                     </p>
                   </div>
                 </div>
