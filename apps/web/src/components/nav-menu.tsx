@@ -11,16 +11,17 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/hooks/use-translation";
 
-export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
+export const NavMenu = (props: ComponentProps<typeof NavigationMenu> & { isWhite?: boolean }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const { t } = useTranslation();
+  const isWhite = props.isWhite;
 
   const linkStyles = (isActive: boolean) => cn(
-    "relative inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:text-[#1D98C4] py-2 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent outline-none focus:outline-none ring-0 focus:ring-0",
-    isActive ? "text-[#1D98C4]" : "text-slate-800",
+    "relative inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors py-2 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent outline-none focus:outline-none ring-0 focus:ring-0",
+    isActive ? (isWhite ? "text-white font-bold" : "text-[#1D98C4]") : (isWhite ? "text-white/80 hover:text-white" : "text-slate-800 hover:text-[#1D98C4]"),
     // Underline animation or static underline for active
-    isActive && "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#1D98C4] after:content-['']"
+    isActive && (isWhite ? "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-white after:content-['']" : "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-[#1D98C4] after:content-['']")
   );
 
   return (
@@ -37,7 +38,10 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
 
         <NavigationMenuItem>
           <NavigationMenuTrigger 
-            className="group inline-flex items-center justify-center gap-1 whitespace-nowrap text-sm font-medium transition-colors hover:text-[#1D98C4] text-slate-800 focus:bg-transparent hover:bg-transparent data-[active]:text-[#1D98C4] data-[state=open]:text-[#1D98C4] bg-transparent !p-0 h-auto !bg-transparent data-[state=open]:!bg-transparent hover:!bg-transparent focus:!bg-transparent outline-none ring-0"
+            className={cn(
+              "group inline-flex items-center justify-center gap-1 whitespace-nowrap text-sm font-medium transition-colors focus:bg-transparent hover:bg-transparent bg-transparent !p-0 h-auto !bg-transparent data-[state=open]:!bg-transparent hover:!bg-transparent focus:!bg-transparent outline-none ring-0",
+              isWhite ? "text-white/80 hover:text-white data-[state=open]:text-white" : "text-slate-800 hover:text-[#1D98C4] data-[state=open]:text-[#1D98C4]"
+            )}
           >
             {t('nav.products')}
           </NavigationMenuTrigger>
