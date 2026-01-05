@@ -66,30 +66,7 @@ export default function App() {
 			storageKey="vite-ui-theme"
 		>
 			<div className="grid grid-rows-[auto_1fr] min-h-svh">
-				<div className="bg-white">
-      <nav className="h-16 bg-white border-b text-black">
-        <div className="h-full flex items-center justify-between max-w-(--breakpoint-xl) mx-auto px-4 sm:px-6 lg:px-8">
-          <Logo />
-          {/* Desktop Menu */}
-          <NavMenu className="hidden md:block text-foreground" />
-          <div className="flex items-center gap-3">
-            <Select defaultValue="id">
-              <SelectTrigger className="w-[190px] !shadow-none !text-black !bg-white !border-0 !ring-0 focus:!ring-0 focus-visible:!ring-0">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="!border-0 !ring-0 !shadow-md !bg-white bg-white !text-black text-black">
-                <SelectItem value="id" className="!text-black !bg-white hover:!bg-gray-100">🇮🇩 Bahasa Indonesia</SelectItem>
-                <SelectItem value="en" className="!text-black !bg-white hover:!bg-gray-100">🇬🇧 English</SelectItem>
-              </SelectContent>
-            </Select>
-            {/* Mobile Menu */}
-            <div className="md:hidden">
-              <NavigationSheet />
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
+				<Header />
 				<Outlet />
 				<Footer />
 			</div>

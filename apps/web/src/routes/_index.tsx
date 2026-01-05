@@ -1,281 +1,266 @@
 import type { Route } from "./+types/_index";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { useTranslation } from "@/hooks/use-translation";
 
 export function meta({}: Route.MetaArgs) {
 	return [
-		{ title: "infinity-globalindo" },
+    { title: "Infinity Globalindo - Connecting Global Markets" },
 		{
 			name: "description",
-			content: "infinity-globalindo is a web application",
+      content: "Leading export-import management, product sourcing, and international shipping solutions.",
 		},
 	];
 }
 
 export default function Home() {
+  const { t } = useTranslation();
+
+  const products = [
+    {
+      title: t('products.items.safety.title'),
+      description: t('products.items.safety.desc'),
+      icon: "/safety-box.svg",
+      delay: 0,
+    },
+    {
+      title: t('products.items.padel.title'),
+      description: t('products.items.padel.desc'),
+      icon: "/padel-tennis.svg",
+      delay: 0.1,
+    },
+    {
+      title: t('products.items.pneumatic.title'),
+      description: t('products.items.pneumatic.desc'),
+      icon: "/pneumatic.svg",
+      delay: 0.2,
+    },
+    {
+      title: t('products.items.financial.title'),
+      description: t('products.items.financial.desc'),
+      icon: "/financial.svg",
+      delay: 0.3,
+    },
+  ];
+
+  const services = [
+    {
+      title: t('services.items.export_import.title'),
+      description: t('services.items.export_import.desc'),
+      icon: "/export-import.svg",
+    },
+    {
+      title: t('services.items.sourcing.title'),
+      description: t('services.items.sourcing.desc'),
+      icon: "/product-sourcing.svg",
+    },
+    {
+      title: t('services.items.shipping.title'),
+      description: t('services.items.shipping.desc'),
+      icon: "/international-shipping.svg",
+    },
+    {
+      title: t('services.items.inspection.title'),
+      description: t('services.items.inspection.desc'),
+      icon: "/quality-inspection.svg",
+    },
+    {
+      title: t('services.items.warehouse.title'),
+      description: t('services.items.warehouse.desc'),
+      icon: "/warehouse.svg",
+    },
+  ];
+
 	return (
-		<div className="min-h-screen w-full bg-white">
+    <div className="min-h-screen w-full bg-white font-sans selection:bg-blue-100">
+      {/* Hero Section */}
 			<section 
-				className="relative mx-4 my-12 rounded-3xl p-6 sm:mx-6 sm:p-16 lg:mx-8"
+        className="relative mx-4 my-4 sm:mx-6 lg:mx-8 rounded-[2rem] px-6 py-12 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center min-h-[calc(100vh-6rem)]"
 				style={{
-					background: "linear-gradient(180deg, rgba(219, 239, 255, 1) 0%, rgba(219, 239, 255, 0) 100%)",
+          background: "linear-gradient(135deg, rgba(235, 248, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)",
 				}}
 			>
-				<div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 items-center max-w-7xl mx-auto w-full">
 					{/* Left Column */}
-					<div className="flex flex-col justify-center">
-						<h1 className="font-serif font-medium text-[32px] leading-[48px] sm:text-[40px] sm:leading-[60px] lg:text-[48px] lg:leading-[71px] tracking-[0px] text-left text-[rgba(40,40,40,1)] mb-6">
-							Menghubungkan Pasar Global Melalui Perdagangan Berkualitas
-						</h1>
-						<p className="font-sans font-normal text-[16px] sm:text-[20px] leading-[150%] tracking-[0px] text-left text-[rgba(102,102,102,1)] mb-8">
-							Kami membantu bisnis memperluas jangkauan internasional melalui layanan ekspor–impor terpercaya untuk produk industri, keamanan, dan gaya hidup.
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col justify-center text-left"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 w-fit mb-6 border border-blue-100">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              <span className="text-xs font-medium text-blue-600 tracking-wide uppercase">{t('hero.badge')}</span>
+            </div>
+            <h1 
+              className="font-serif font-medium text-4xl sm:text-5xl lg:text-6xl leading-[1.15] tracking-tight text-slate-900 mb-6"
+              dangerouslySetInnerHTML={{ __html: t('hero.title') }}
+            />
+            <p className="font-sans text-lg sm:text-xl leading-relaxed text-slate-600 mb-10 max-w-xl">
+              {t('hero.description')}
 						</p>
 						<div className="flex flex-col sm:flex-row gap-4">
-							<Button size="lg" className="text-white px-8 hover:opacity-90" style={{ backgroundColor: "rgba(29, 152, 196, 1)" }}>
-								Dapatkan Penawaran
+              <Button size="lg" className="h-12 px-8 text-base bg-[#1D98C4] hover:bg-[#1787b0] text-white shadow-lg shadow-blue-200 transition-all hover:scale-105">
+                {t('hero.cta_primary')}
 							</Button>
-							<Button size="lg" variant="outline" className="px-8 !text-black !border-gray-300 hover:!bg-gray-100 hover:!text-black !bg-white">
-								Lihat Produk Kami
+              <Button size="lg" variant="outline" className="h-12 px-8 text-base border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900">
+                {t('hero.cta_secondary')}
 							</Button>
 						</div>
-					</div>
-					
-					{/* Right Column (empty for now, can be used for image) */}
-					<div className="hidden lg:flex items-center justify-center">
-						<img src="/world-maps.svg" alt="World map" className="w-full max-w-xl h-auto" />
-					</div>
+          </motion.div>
+          
+          {/* Right Column */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+            className="hidden lg:flex items-center justify-center relative"
+          >
+             <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/30 to-transparent rounded-full filter blur-3xl transform scale-90 translate-y-10"></div>
+            <img src="/world-maps.svg" alt="World map" className="w-full max-w-2xl h-auto relative z-10 drop-shadow-sm" />
+          </motion.div>
 				</div>
 			</section>
 
-			<section className="mt-[100px] px-4">
-				<div className="max-w-4xl mx-auto text-left sm:text-center">
-					<span className="inline-block px-4 py-1 text-sm font-medium uppercase" style={{
-						backgroundColor: 'rgba(245, 245, 245, 1)',
-						color: 'rgba(29, 152, 196, 1)'
-					}}>
-						Layanan Kami
-					</span>
+      {/* Services Section */}
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-7xl mx-auto text-center">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, ease: "easeOut" }}
-						viewport={{ once: true, amount: 0.3 }}
-					>
-						<h2 className="mt-6 font-serif font-medium text-[28px] leading-[150%] sm:text-[32px] lg:text-[40px] tracking-[0px] text-black">
-							Mendukung Perdagangan Global <br style={{ display: 'none' }} className="sm:inline" />
-							Melalui Layanan yang Andal
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full bg-slate-50 text-[#1D98C4] mb-4">
+              {t('services.badge')}
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-6 leading-tight">
+              {t('services.title')}
 						</h2>
-						<h3 className="mt-4 font-serif font-medium text-[24px] leading-[150%] sm:text-[28px] lg:text-[32px] tracking-[0px] text-black">
-							Solusi Terpercaya untuk Bisnis Anda
-						</h3>
-						<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-[rgba(102,102,102,1)]">
-							Kami menjembatani produsen dan pembeli di seluruh dunia <br style={{ display: 'none' }} className="sm:inline" />
-							melalui layanan perdagangan yang tepercaya dan transparan.
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              {t('services.description')}
 						</p>
 					</motion.div>
-				</div>
-			</section>
 
-			<section className="mt-[80px] px-4">
-				<div className="max-w-6xl mx-auto">
-					<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-3">
-						{/* Column 1 */}
-						<div className="text-left sm:text-center px-3 sm:px-4">
-							<img src="/export-import.svg" alt="Export & Import" className="h-20 w-20 sm:mx-auto" />
-							<h3 className="mt-6 font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)]">
-								Export & Import Management
-							</h3>
-						<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-							Penanganan menyeluruh dari dokumen, bea cukai, hingga logistik agar proses lintas negara berjalan lancar.
-						</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.slice(0, 3).map((service, idx) => (
+               <ServiceCard key={idx} service={service} />
+            ))}
 						</div>
-
-						{/* Column 2 */}
-						<div className="text-left sm:text-center px-3 sm:px-4">
-							<img src="/product-sourcing.svg" alt="Product Sourcing" className="h-20 w-20 sm:mx-auto" />
-							<h3 className="mt-6 font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)]">
-								Product Sourcing
-							</h3>
-						<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-							Kami membantu Anda menemukan produsen terpercaya untuk mendapatkan produk yang sesuai dengan pasar Anda.
-						</p>
-						</div>
-
-						{/* Column 3 */}
-						<div className="text-left sm:text-center px-3 sm:px-4">
-							<img src="/international-shipping.svg" alt="International Shipping" className="h-20 w-20 sm:mx-auto" />
-							<h3 className="mt-6 font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)]">
-								International Shipping
-							</h3>
-						<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-							Pengiriman internasional cepat dan aman melalui udara, laut, atau darat — disesuaikan dengan kebutuhan Anda.
-						</p>
-						</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 max-w-4xl mx-auto">
+             {services.slice(3).map((service, idx) => (
+               <ServiceCard key={idx + 3} service={service} />
+            ))}
 					</div>
 				</div>
 			</section>
 
-		{/* Secondary services (two columns) */}
-		<section className="mt-10 sm:mt-[64px] px-4">
-				<div className="max-w-6xl mx-auto">
-					<div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-					{/* Column 4 */}
-					<div className="text-left sm:text-center px-4 sm:px-6">
-						<img src="/quality-inspection.svg" alt="Quality Inspection" className="h-20 w-20 sm:mx-auto" />
-						<h3 className="mt-6 font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)]">
-							Quality Inspection
-						</h3>
-						<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-							Setiap produk diperiksa dengan teliti agar memenuhi standar internasional sebelum dikirim.
+      {/* Products Section */}
+      <section className="py-24 px-4 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto">
+           <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full bg-white border border-slate-100 text-[#1D98C4] mb-4">
+              {t('products.badge')}
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-900 mb-6 leading-tight">
+              {t('products.title')}
+            </h2>
+             <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              {t('products.description')}
 						</p>
 					</div>
 
-					{/* Column 5 */}
-					<div className="text-left sm:text-center px-4 sm:px-6">
-						<img src="/warehouse.svg" alt="Warehouse & Distribution" className="h-20 w-20 sm:mx-auto" />
-						<h3 className="mt-6 font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)]">
-							Warehouse & Distribution
-						</h3>
-						<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-							Solusi penyimpanan yang aman dan strategis untuk distribusi global yang efisien.
-						</p>
-					</div>
-					</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {products.map((product, index) => (
+					<motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: product.delay }}
+                viewport={{ once: true }}
+                className="group relative rounded-[2rem] border border-slate-100 bg-white p-10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+                  <div className="flex-shrink-0 p-4 rounded-2xl bg-slate-50 group-hover:bg-blue-50 transition-colors">
+                     <img src={product.icon} alt={product.title} className="h-16 w-16 object-contain" />
+						</div>
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-slate-900 mb-2 group-hover:text-[#1D98C4] transition-colors">{product.title}</h3>
+                    <p className="text-slate-600 leading-relaxed mb-4">{product.description}</p>
+                    <div className="flex items-center text-[#1D98C4] font-medium text-sm group/btn cursor-pointer">
+                      {t('products.detail_btn')} <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+						</div>
+						</div>
+						</div>
+					</motion.div>
+            ))}
+          </div>
 				</div>
 			</section>
 
-		{/* Produk Kami section */}
-		<section className="mt-[100px] sm:mt-[200px] px-4">
-				<div className="max-w-5xl mx-auto text-left sm:text-center">
-					<span className="inline-block px-4 py-1 text-sm font-medium uppercase" style={{
-						backgroundColor: 'rgba(245, 245, 245, 1)',
-						color: 'rgba(29, 152, 196, 1)'
-					}}>
-						Produk Kami
-					</span>
-					{/* <h2 className="mt-6 font-serif font-medium text-[40px] leading-[150%] tracking-[0px] text-black">
-						Menyediakan Produk Berkualitas <br style={{ display: 'none' }} className="sm:inline" />
-						untuk Pasar Global
-					</h2> */}
-					<h2 className="mt-6 font-serif font-medium text-[28px] leading-[150%] sm:text-[32px] lg:text-[40px] tracking-[0px] text-black">
-						Menyediakan Produk Berkualitas <br style={{ display: 'none' }} className="sm:inline" />
-						untuk Pasar Global
-					</h2>
-					<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-gray-700">
-						Dari komponen industri hingga perlengkapan olahraga dan keamanan — <br style={{ display: 'none' }} className="sm:inline" />
-						setiap produk kami pastikan memenuhi standar internasional.
-					</p>
-				</div>
-			</section>
-
-			{/* Produk cards grid */}
-			<section className="mt-12 px-4">
-				<div className="max-w-6xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-2">
-					{/* Card 1 */}
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0 }}
-						viewport={{ once: true, amount: 0.2 }}
-						className="rounded-3xl border border-gray-200 bg-white p-10 text-left sm:text-center shadow-sm"
-					>
-						<img src="/safety-box.svg" alt="Safety Box & Security" className="h-24 w-24 object-contain sm:mx-auto" />
-						<h3 className="mt-6 font-sans text-2xl font-semibold text-[rgba(40,40,40,1)]">Safety Box & Security Equipment</h3>
-						<p className="mt-4 font-sans text-base font-normal leading-[150%] text-[rgba(136,136,136,1)]">
-							Kuat, tahan lama, dan presisi — brankas serta kunci digital kami dipercaya oleh rumah, kantor, dan lembaga di seluruh dunia.
-						</p>
-						<div className="mt-6">
-							<Button variant="outline" className="!text-black !border-gray-300 hover:!bg-gray-100 hover:!text-black !bg-white">Detail Produk</Button>
-						</div>
-					</motion.div>
-
-					{/* Card 2 */}
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.1 }}
-						viewport={{ once: true, amount: 0.2 }}
-						className="rounded-3xl border border-gray-200 bg-white p-10 text-left sm:text-center shadow-sm"
-					>
-						<img src="/padel-tennis.svg" alt="Padel & Sports" className="h-24 w-24 object-contain sm:mx-auto" />
-						<h3 className="mt-6 font-sans text-2xl font-semibold text-[rgba(40,40,40,1)]">Padel Tennis Racket & Sports Equipment</h3>
-						<p className="mt-4 font-sans text-base font-normal leading-[150%] text-[rgba(136,136,136,1)]">
-							Ringan dan berperforma tinggi, perlengkapan olahraga kami memenuhi standar terbaik bagi pemain maupun distributor.
-						</p>
-						<div className="mt-6">
-							<Button variant="outline" className="!text-black !border-gray-300 hover:!bg-gray-100 hover:!text-black !bg-white">Detail Produk</Button>
-						</div>
-					</motion.div>
-
-					{/* Card 3 */}
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-						viewport={{ once: true, amount: 0.2 }}
-						className="rounded-3xl border border-gray-200 bg-white p-10 text-left sm:text-center shadow-sm"
-					>
-						<img src="/pneumatic.svg" alt="Pneumatic & Industrial" className="h-24 w-24 object-contain sm:mx-auto" />
-						<h3 className="mt-6 font-sans text-2xl font-semibold text-[rgba(40,40,40,1)]">Pneumatic & Industrial Components</h3>
-						<p className="mt-4 font-sans text-base font-normal leading-[150%] text-[rgba(136,136,136,1)]">
-							Komponen industri berkualitas tinggi yang dirancang untuk presisi dan ketahanan — mendukung pabrik, otomasi, & sistem teknik.
-						</p>
-						<div className="mt-6">
-							<Button variant="outline" className="!text-black !border-gray-300 hover:!bg-gray-100 hover:!text-black !bg-white">Detail Produk</Button>
-						</div>
-					</motion.div>
-
-					{/* Card 4 */}
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.3 }}
-						viewport={{ once: true, amount: 0.2 }}
-						className="rounded-3xl border border-gray-200 bg-white p-10 text-left sm:text-center shadow-sm"
-					>
-						<img src="/financial.svg" alt="Financial Tools" className="h-24 w-24 object-contain sm:mx-auto" />
-						<h3 className="mt-6 font-sans text-2xl font-semibold text-[rgba(40,40,40,1)]">Financial Tools</h3>
-						<p className="mt-4 font-sans text-base font-normal leading-[150%] text-[rgba(136,136,136,1)]">
-							Mendukung transaksi global dengan alat finansial yang cerdas, aman, dan efisien untuk pembiayaan perdagangan.
-						</p>
-						<div className="mt-6">
-							<Button variant="outline" className="!text-black !border-gray-300 hover:!bg-gray-100 hover:!text-black !bg-white">Detail Produk</Button>
-						</div>
-					</motion.div>
-				</div>
-			</section>
-
-			{/* CTA section */}
-			<section className="mt-[100px] px-4">
+      {/* CTA Section */}
+      <section className="py-24 px-4">
 				<motion.div
-					initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
 					whileInView={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.6, ease: "easeOut" }}
-					viewport={{ once: true, amount: 0.2 }}
-					className="mx-auto max-w-6xl rounded-3xl px-6 py-6 text-left sm:text-center"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-6xl rounded-[2.5rem] p-10 sm:p-16 text-center relative overflow-hidden"
 					style={{ backgroundColor: "rgba(29, 152, 196, 1)" }}
 				>
-				<div className="pt-4 sm:pt-16">
+          {/* Abstract Pattern */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                   <circle cx="2" cy="2" r="1" fill="white" />
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+             </svg>
+          </div>
+
+          <div className="relative z-10 flex flex-col items-center">
 					<img
 						src="/infinity-globalindo-white-logo.svg"
 						alt="Infinity Globalindo"
-						className="h-10 w-auto sm:mx-auto"
+              className="h-12 w-auto mb-10 opacity-90"
 					/>
-				</div>
-					<h2 className="mt-10 font-serif font-medium text-[28px] leading-[150%] sm:text-[32px] lg:text-[40px] tracking-[0px] text-white">
-						Mari Bangun Koneksi Global Bersama
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6 leading-tight">
+              {t('cta.title')}
 					</h2>
-					<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-white">
-						Dari komponen industri hingga perlengkapan olahraga dan keamanan — <br style={{ display: 'none' }} className="sm:inline" />
-						setiap produk kami pastikan memenuhi standar internasional.
+            <p className="text-blue-100 text-lg max-w-2xl leading-relaxed mb-10">
+              {t('cta.description')}
 					</p>
-					<div className="mt-10">
-						<Button className="bg-white text-[rgba(29,152,196,1)] hover:bg-white/90">Hubungi Kami</Button>
+            <Button size="lg" className="h-14 px-10 text-lg bg-white text-[#1D98C4] hover:bg-slate-50 border-0 shadow-xl hover:scale-105 transition-all">
+              {t('cta.btn')}
+            </Button>
 					</div>
-					<div className="pb-4 sm:pb-16" />
 			</motion.div>
 			</section>
 		</div>
 	);
 }
 
+function ServiceCard({ service }: { service: { title: string, description: string, icon: string } }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="flex flex-col items-center p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full"
+    >
+      <div className="mb-6 p-4 rounded-full bg-blue-50/50">
+        <img src={service.icon} alt={service.title} className="h-16 w-16" />
+      </div>
+      <h3 className="font-serif text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+      <p className="text-slate-600 text-center leading-relaxed">
+        {service.description}
+      </p>
+    </motion.div>
+  )
+}

@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { ArrowUp } from "lucide-react";
+import { useTranslation } from "@/hooks/use-translation";
 
 export const Footer = () => {
+  const { t } = useTranslation();
   const year = new Date().getFullYear();
   const scrollToTop = () => {
     if (typeof window !== "undefined") {
@@ -10,51 +13,72 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="pt-16 bg-white">
-        <div className="px-4 sm:px-8 md:px-16 lg:px-28">
-        <Separator className="bg-gray-200" />
-        </div>
-      <div className="mx-auto max-w-(--breakpoint-xl) px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <img src="/infinity-globalindo-logo.svg" alt="Infinity Globalindo" className="h-12 w-auto" />
+    <footer className="bg-white pt-20 pb-8 text-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Separator className="bg-slate-100 mb-12" />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+          {/* Logo & Brand */}
+          <div className="lg:col-span-4 flex flex-col items-start gap-6">
+            <img src="/infinity-globalindo-logo.svg" alt="Infinity Globalindo" className="h-10 w-auto" />
+            <p className="text-slate-500 leading-relaxed max-w-sm">
+              {t('footer.tagline')}
+            </p>
           </div>
 
           {/* Address */}
-          <div className="flex-1">
-            <div className="text-xs uppercase tracking-wide text-gray-500">Address</div>
-            <p className="mt-2 text-sm leading-relaxed text-gray-700">
-              <span className="font-medium">Office:</span><br />
-              JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara,<br />
-              Kec. Penjaringan, Kota Adm. Jakarta Utara, DKI Jakarta, 14460
-            </p>
-            <p className="mt-3 pt-3 text-sm leading-relaxed text-gray-700 border-t border-gray-300">
-              <span className="font-medium">Workshop:</span><br />
-              Ruko Kopi Mas Lantai 3, Jl Kopi 4 L, Roa Malaka Tambora<br />
-              Jakarta Barat, DKI Jakarta 11230
-            </p>
+          <div className="lg:col-span-4 space-y-8">
+            <div>
+               <h4 className="font-semibold text-slate-900 uppercase tracking-wider text-xs mb-4">{t('footer.head_office')}</h4>
+               <p className="text-slate-600 leading-relaxed">
+                 JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara,<br />
+                 Kec. Penjaringan, Kota Adm. Jakarta Utara, DKI Jakarta, 14460
+               </p>
+            </div>
+            <div>
+               <h4 className="font-semibold text-slate-900 uppercase tracking-wider text-xs mb-4">{t('footer.workshop')}</h4>
+               <p className="text-slate-600 leading-relaxed">
+                 Ruko Kopi Mas Lantai 3, Jl Kopi 4 L, Roa Malaka Tambora<br />
+                 Jakarta Barat, DKI Jakarta 11230
+               </p>
+            </div>
           </div>
 
-          {/* Phone + Email + Back to Top */}
-          <div className="flex flex-row items-center md:items-center gap-32">
-            <div>
-              <div className="text-xs uppercase tracking-wide text-gray-500">Phone Number</div>
-              <p className="mt-2 text-sm text-gray-700">+62 877-7555-9883</p>
-              <div className="text-xs uppercase tracking-wide text-gray-500 mt-4">Email</div>
-              <p className="mt-2 text-sm text-gray-700">halo@igtrade.id</p>
+          {/* Contact & Actions */}
+          <div className="lg:col-span-4 flex flex-col lg:items-end justify-between gap-8">
+            <div className="space-y-6 lg:text-right">
+              <div>
+                <h4 className="font-semibold text-slate-900 uppercase tracking-wider text-xs mb-2">{t('footer.phone')}</h4>
+                <a href="tel:+6287775559883" className="text-slate-600 hover:text-[#1D98C4] transition-colors text-base">
+                  +62 877-7555-9883
+                </a>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-900 uppercase tracking-wider text-xs mb-2">{t('footer.email')}</h4>
+                <a href="mailto:halo@igtrade.id" className="text-slate-600 hover:text-[#1D98C4] transition-colors text-base">
+                  halo@igtrade.id
+                </a>
+              </div>
             </div>
-            <Button variant="outline" onClick={scrollToTop} className="!text-black !bg-white !border-gray-300 hover:!bg-gray-100 hover:!text-black">Back to Top</Button>
+            
+            <Button 
+              variant="outline" 
+              onClick={scrollToTop} 
+              className="group border-slate-200 text-slate-600 hover:text-[#1D98C4] hover:border-[#1D98C4] hover:bg-slate-50 transition-all duration-300"
+            >
+              {t('footer.back_to_top')} <ArrowUp className="ml-2 h-4 w-4 transition-transform group-hover:-translate-y-1" />
+            </Button>
           </div>
         </div>
-      </div>
-      <div className="px-4 sm:px-8 md:px-16 lg:px-28">
-        <Separator className="bg-gray-200" />
-      </div>
-      <div className="bg-white">
-        <div className="mx-auto max-w-(--breakpoint-xl) px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between text-sm text-gray-600">
-          <div>© All Right Reserved. PT Infinity Globalindo Trade</div>
-          <div>{year}</div>
+
+        <Separator className="bg-slate-100 mb-8" />
+        
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
+          <p>© {year} PT Infinity Globalindo Trade. {t('footer.rights')}</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-[#1D98C4] transition-colors">{t('footer.privacy')}</a>
+            <a href="#" className="hover:text-[#1D98C4] transition-colors">{t('footer.terms')}</a>
+          </div>
         </div>
       </div>
     </footer>
