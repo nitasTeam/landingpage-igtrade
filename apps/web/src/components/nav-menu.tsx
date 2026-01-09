@@ -28,8 +28,8 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu> & { isWhite
     <NavigationMenu {...props}>
       <NavigationMenuList className="gap-8 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
         <NavigationMenuItem>
-          <Link 
-            to="/about" 
+          <Link
+            to="/about"
             className={linkStyles(pathname === '/about')}
           >
             {t('nav.about')}
@@ -37,7 +37,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu> & { isWhite
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger 
+          <NavigationMenuTrigger
             className={cn(
               "group inline-flex items-center justify-center gap-1 whitespace-nowrap text-sm font-medium transition-colors focus:bg-transparent hover:bg-transparent bg-transparent !p-0 h-auto !bg-transparent data-[state=open]:!bg-transparent hover:!bg-transparent focus:!bg-transparent outline-none ring-0",
               isWhite ? "text-white/80 hover:text-white data-[state=open]:text-white" : "text-slate-800 hover:text-[#1D98C4] data-[state=open]:text-[#1D98C4]"
@@ -46,58 +46,58 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu> & { isWhite
             {t('nav.products')}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-white p-3 shadow-xl rounded-2xl min-w-[340px] border border-slate-100 mt-3 animate-in fade-in slide-in-from-top-3 duration-200">
-              <ul className="grid gap-1">
-                <li>
-                  <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
-                      <img src="/safety-box.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
-                    </span>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">Safety Box</span>
-                      <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600">Secure storage & protection solutions</span>
-                    </div>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
-                       <img src="/financial.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
-                    </span>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">Financial Tools</span>
-                      <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600">Smart trading & finance systems</span>
-                    </div>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
-                       <img src="/pneumatic.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
-                    </span>
-                     <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">Pneumatic</span>
-                      <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600">Industrial & automation components</span>
-                    </div>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
-                       <img src="/padel-tennis.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
-                    </span>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">Padel Racket</span>
-                      <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600">Professional sports equipment</span>
-                    </div>
-                  </NavLink>
-                </li>
-              </ul>
+            <ul className="grid gap-1">
+              <li>
+                <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
+                    <img src="/safety-box.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
+                  </span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">{t('products.items.safety.title')}</span>
+                    <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600 line-clamp-2">{t('products.items.safety.desc')}</span>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
+                    <img src="/financial.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
+                  </span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">{t('products.items.financial.title')}</span>
+                    <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600 line-clamp-2">{t('products.items.financial.desc')}</span>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
+                    <img src="/pneumatic.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
+                  </span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">{t('products.items.pneumatic.title')}</span>
+                    <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600 line-clamp-2">{t('products.items.pneumatic.desc')}</span>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/coming-soon" className="flex items-start gap-4 rounded-xl px-4 py-3 hover:bg-blue-50/60 transition-all group duration-200">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-[#1D98C4] group-hover:bg-[#1D98C4] group-hover:text-white transition-all shadow-sm border border-slate-100 group-hover:border-blue-200">
+                    <img src="/padel-tennis.svg" className="w-5 h-5 transition-transform group-hover:scale-110" alt="" />
+                  </span>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-slate-900 font-semibold text-sm group-hover:text-[#1D98C4] transition-colors">{t('products.items.padel.title')}</span>
+                    <span className="text-slate-500 text-xs leading-relaxed group-hover:text-slate-600 line-clamp-2">{t('products.items.padel.desc')}</span>
+                  </div>
+                </NavLink>
+              </li>
+            </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link 
-            to="/contact-us" 
+          <Link
+            to="/contact-us"
             className={linkStyles(pathname === '/contact-us')}
           >
             {t('nav.contact')}
@@ -107,4 +107,3 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu> & { isWhite
     </NavigationMenu>
   );
 };
-  

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { translations } from '../translations';
 
-type Language = 'id' | 'en';
+type Language = 'id' | 'en' | 'cn';
 
 interface TranslationState {
   language: Language;
@@ -18,7 +18,7 @@ export const useTranslation = create<TranslationState>()(
       t: (key: string) => {
         const keys = key.split('.');
         let value: any = translations[get().language];
-        
+
         for (const k of keys) {
           if (value && typeof value === 'object' && k in value) {
             value = value[k];
@@ -26,7 +26,7 @@ export const useTranslation = create<TranslationState>()(
             return key;
           }
         }
-        
+
         return typeof value === 'string' ? value : key;
       },
     }),

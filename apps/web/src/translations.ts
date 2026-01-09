@@ -160,6 +160,87 @@ export const translations = {
       privacy: "Privacy Policy",
       terms: "Terms of Service"
     }
+  },
+  cn: {
+    nav: {
+      about: "关于我们",
+      products: "产品中心",
+      contact: "联系我们",
+    },
+    hero: {
+      badge: "全球贸易伙伴",
+      title: "通过优质贸易<span class='text-blue-600'>连接全球市场</span>",
+      description: "我们通过值得信赖的工业、安全和生活方式产品进出口服务，帮助企业拓展国际业务。",
+      cta_primary: "获取报价",
+      cta_secondary: "查看产品",
+    },
+    services: {
+      badge: "我们的服务",
+      title: "值得信赖的商业解决方案",
+      description: "我们通过诚信透明的贸易服务，连接全球制造商与买家。",
+      items: {
+        export_import: {
+          title: "进出口管理",
+          desc: "全方位处理文件、报关及物流，确保跨境流程顺畅。"
+        },
+        sourcing: {
+          title: "产品采购",
+          desc: "我们协助您寻找可靠的制造商，获取符合您市场需求的产品。"
+        },
+        shipping: {
+          title: "国际物流",
+          desc: "快速安全的空运、海运或陆运国际物流服务 —— 贴合您的需求。"
+        },
+        inspection: {
+          title: "质量检验",
+          desc: "每件产品在发货前均经过仔细检查，确保符合国际标准。"
+        },
+        warehouse: {
+          title: "仓储与配送",
+          desc: "安全且具有战略意义的仓储解决方案，助力高效的全球分销。"
+        }
+      }
+    },
+    products: {
+      badge: "我们的产品",
+      title: "为全球市场提供优质产品",
+      description: "从工业组件到运动器材及安防设备 —— 我们确保每件产品均符合国际标准。",
+      detail_btn: "产品详情",
+      items: {
+        safety: {
+          title: "保险箱与安防设备",
+          desc: "坚固、耐用且精密 —— 我们的保险箱和数码锁深受全球家庭、办公室及机构信赖。"
+        },
+        padel: {
+          title: "板式网球拍与运动器材",
+          desc: "轻盈且高性能，我们的运动器材符合球员及经销商的最高标准。"
+        },
+        pneumatic: {
+          title: "气动与工业组件",
+          desc: "专为精密与耐用设计的优质工业组件 —— 支持工厂、自动化及工程系统。"
+        },
+        financial: {
+          title: "金融工具",
+          desc: "提供智能、安全且高效的贸易融资工具，支持全球交易。"
+        }
+      }
+    },
+    cta: {
+      title: "让我们共同建立全球连接",
+      description: "准备好拓展您的业务范围了吗？我们的团队随时准备为您提供最佳贸易解决方案。",
+      btn: "联系我们"
+    },
+    footer: {
+      tagline: "通过优质贸易、可靠物流和诚信合作连接全球市场。",
+      head_office: "总部",
+      workshop: "工厂",
+      phone: "电话",
+      email: "邮箱",
+      back_to_top: "返回顶部",
+      rights: "版权所有。",
+      privacy: "隐私政策",
+      terms: "条款与条件"
+    }
   }
 };
 
