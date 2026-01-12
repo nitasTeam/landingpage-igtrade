@@ -36,81 +36,112 @@ export default function BlogIndex() {
 
 
     return (
-        <div className="min-h-screen bg-white pt-20">
-            {/* Header */}
-            <section className="py-16 px-4 bg-gradient-to-b from-slate-50 to-white">
-                <div className="max-w-7xl mx-auto text-center">
-                    <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 font-bold">
-                        Blog
+        <div className="min-h-screen bg-slate-50 font-sans">
+            {/* Hero Section */}
+            <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full bg-white">
+                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-white to-white opacity-70"></div>
+                </div>
+
+                <div className="relative max-w-7xl mx-auto text-center z-10">
+                    <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold mb-6 tracking-wide uppercase">
+                        Our Journal
+                    </span>
+                    <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-slate-900 mb-6 font-bold tracking-tight">
+                        Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D98C4] to-[#146c8e]">Insights</span>
                     </h1>
-                    <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
-                        Latest news, insights, and updates from Infinity Globalindo
+                    <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                        Discover the latest news, industry trends, and updates from the Infinity Globalindo team.
                     </p>
                 </div>
             </section>
 
             {/* Blog Posts */}
-            <section className="py-16 px-4">
+            <section className="pb-24 px-4 bg-slate-50">
                 <div className="max-w-7xl mx-auto">
                     {posts.length === 0 ? (
-                        <div className="text-center py-16">
-                            <p className="text-slate-500 text-lg">No blog posts yet. Check back soon!</p>
+                        <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-3xl shadow-sm border border-slate-100 p-12">
+                            <div className="bg-blue-50 p-4 rounded-full mb-4">
+                                <Calendar className="w-8 h-8 text-[#1D98C4]" />
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-2">No posts found</h3>
+                            <p className="text-slate-500 max-w-md mx-auto">
+                                We haven't published any articles yet. Check back soon for updates!
+                            </p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                             {posts.map((post) => (
                                 <Link
                                     key={post.slug}
                                     to={`/blog/${post.slug}`}
-                                    className="group bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                                    className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 h-full"
                                 >
-                                    {post.image && (
-                                        <div className="aspect-video overflow-hidden bg-slate-100">
+                                    {/* Image Container */}
+                                    <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                                        {post.image ? (
                                             <img
                                                 src={post.image}
                                                 alt={post.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                             />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center text-slate-300">
+                                                <span className="text-4xl font-serif italic opacity-20">Ig</span>
+                                            </div>
+                                        )}
+
+                                        {/* Date Badge */}
+                                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-xs font-bold text-slate-900 shadow-sm flex items-center gap-1.5">
+                                            <Calendar className="w-3.5 h-3.5 text-[#1D98C4]" />
+                                            {new Date(post.date).toLocaleDateString('en-US', {
+                                                month: 'short',
+                                                day: 'numeric',
+                                                year: 'numeric'
+                                            })}
                                         </div>
-                                    )}
-                                    <div className="p-6">
-                                        <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
-                                            <span className="flex items-center gap-1">
-                                                <Calendar className="w-4 h-4" />
-                                                {new Date(post.date).toLocaleDateString('en-US', {
-                                                    year: 'numeric',
-                                                    month: 'short',
-                                                    day: 'numeric',
-                                                })}
-                                            </span>
-                                            {post.author && (
-                                                <span className="flex items-center gap-1">
-                                                    <User className="w-4 h-4" />
-                                                    {post.author}
-                                                </span>
-                                            )}
-                                        </div>
-                                        <h2 className="font-serif text-2xl font-bold text-slate-900 mb-3 group-hover:text-[#1D98C4] transition-colors">
-                                            {post.title}
-                                        </h2>
-                                        <p className="text-slate-600 leading-relaxed mb-4">
-                                            {post.description || getExcerpt(post.content)}
-                                        </p>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="flex flex-col flex-grow p-6 md:p-8">
+                                        {/* Tags */}
                                         {post.tags && post.tags.length > 0 && (
                                             <div className="flex flex-wrap gap-2 mb-4">
-                                                {post.tags.map((tag) => (
+                                                {post.tags.slice(0, 3).map((tag) => (
                                                     <span
                                                         key={tag}
-                                                        className="px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 rounded-full"
+                                                        className="px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase bg-blue-50 text-blue-600 rounded-full"
                                                     >
                                                         {tag}
                                                     </span>
                                                 ))}
                                             </div>
                                         )}
-                                        <div className="flex items-center text-[#1D98C4] font-medium text-sm group/btn">
-                                            Read More
-                                            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+
+                                        <h2 className="font-serif text-2xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-[#1D98C4] transition-colors line-clamp-2">
+                                            {post.title}
+                                        </h2>
+
+                                        <div className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                                            {post.description || getExcerpt(post.content)}
+                                        </div>
+
+                                        <div className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between">
+                                            {post.author ? (
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                                                        <User className="w-4 h-4" />
+                                                    </div>
+                                                    <span className="text-sm font-medium text-slate-700">{post.author}</span>
+                                                </div>
+                                            ) : (
+                                                <span></span>
+                                            )}
+
+                                            <div className="flex items-center text-[#1D98C4] font-semibold text-sm group/btn">
+                                                Read Post
+                                                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                                            </div>
                                         </div>
                                     </div>
                                 </Link>

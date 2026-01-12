@@ -72,49 +72,57 @@ export default function BlogPost() {
     }
 
     return (
-        <div className="min-h-screen bg-white pt-20">
-            {/* Header */}
-            <section className="py-12 px-4 bg-gradient-to-b from-slate-50 to-white">
-                <div className="max-w-4xl mx-auto">
+        <div className="min-h-screen bg-white font-sans">
+            {/* Header/Hero Section */}
+            <section className="relative pt-32 pb-16 px-4 overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full bg-slate-50">
+                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-white to-white opacity-70"></div>
+                </div>
+
+                <div className="relative max-w-4xl mx-auto z-10">
                     <Link
                         to="/blog"
-                        className="inline-flex items-center text-[#1D98C4] hover:text-[#1787b0] font-medium mb-8 transition-colors"
+                        className="inline-flex items-center text-slate-500 hover:text-[#1D98C4] font-medium mb-8 transition-colors group"
                     >
-                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center mr-3 shadow-sm group-hover:border-[#1D98C4] transition-colors">
+                            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                        </div>
                         Back to Blog
                     </Link>
 
-                    <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-6 font-bold leading-tight">
-                        {post.title}
-                    </h1>
-
-                    <div className="flex flex-wrap items-center gap-6 text-slate-600">
-                        <span className="flex items-center gap-2">
-                            <Calendar className="w-5 h-5" />
+                    {/* Meta Top */}
+                    <div className="flex flex-wrap items-center gap-4 text-sm font-medium text-slate-500 mb-6">
+                        <span className="flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-slate-100 shadow-sm text-slate-700">
+                            <Calendar className="w-3.5 h-3.5 text-[#1D98C4]" />
                             {new Date(post.date).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric',
                             })}
                         </span>
-                        {post.author && (
-                            <span className="flex items-center gap-2">
-                                <User className="w-5 h-5" />
-                                {post.author}
+                        {post.tags && post.tags.length > 0 && post.tags.map((tag) => (
+                            <span
+                                key={tag}
+                                className="px-2.5 py-0.5 text-xs font-bold tracking-wider uppercase bg-blue-50 text-blue-600 rounded-full"
+                            >
+                                {tag}
                             </span>
-                        )}
+                        ))}
                     </div>
 
-                    {post.tags && post.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-6">
-                            {post.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className="px-4 py-1.5 text-sm font-medium bg-slate-100 text-slate-700 rounded-full"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
+                    <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-slate-900 mb-8 font-bold leading-tight tracking-tight">
+                        {post.title}
+                    </h1>
+
+                    {post.author && (
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                                <User className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <p className="text-sm font-bold text-slate-900">{post.author}</p>
+                                <p className="text-xs text-slate-500">Author</p>
+                            </div>
                         </div>
                     )}
                 </div>
@@ -122,36 +130,39 @@ export default function BlogPost() {
 
             {/* Featured Image */}
             {post.image && (
-                <section className="px-4 py-8">
-                    <div className="max-w-4xl mx-auto">
-                        <img
-                            src={post.image}
-                            alt={post.title}
-                            className="w-full h-auto rounded-2xl shadow-lg"
-                        />
+                <section className="px-4 -mt-8 mb-12 relative z-20">
+                    <div className="max-w-5xl mx-auto">
+                        <div className="rounded-3xl overflow-hidden shadow-xl ring-1 ring-slate-900/5 aspect-[16/8] bg-slate-100 relative">
+                            <img
+                                src={post.image}
+                                alt={post.title}
+                                className="absolute inset-0 w-full h-full object-cover"
+                            />
+                        </div>
                     </div>
                 </section>
             )}
 
             {/* Content */}
-            <section className="px-4 py-8">
-                <div className="max-w-4xl mx-auto">
-                    <article className="prose prose-lg max-w-none">
+            <section className="px-4 pb-24">
+                <div className="max-w-3xl mx-auto">
+                    <article className="prose prose-lg prose-slate hover:prose-a:text-[#1D98C4] max-w-none prose-headings:font-serif prose-headings:font-bold prose-img:rounded-2xl prose-img:shadow-lg">
                         <MarkdownRenderer content={post.content} />
                     </article>
-                </div>
-            </section>
 
-            {/* Back to Blog */}
-            <section className="px-4 py-12">
-                <div className="max-w-4xl mx-auto">
-                    <Link
-                        to="/blog"
-                        className="inline-flex items-center justify-center px-6 py-3 bg-[#1D98C4] hover:bg-[#1787b0] text-white font-medium rounded-lg transition-colors"
-                    >
-                        <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back to All Posts
-                    </Link>
+                    {/* Footer / Share / Back */}
+                    <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <p className="text-slate-500 italic">
+                            Thanks for reading!
+                        </p>
+                        <Link
+                            to="/blog"
+                            className="inline-flex items-center justify-center px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-xl transition-all hover:shadow-lg hover:-translate-y-0.5"
+                        >
+                            <ArrowLeft className="w-4 h-4 mr-2" />
+                            Read More Articles
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>
