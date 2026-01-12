@@ -7,16 +7,23 @@
 
 
 # Serve admin files directly (for Decap CMS)
+# Redirect /admin to /admin/index.html
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
 [[redirects]]
   from = "/admin/*"
   to = "/admin/:splat"
   status = 200
 
-# SPA fallback for all other routes
+# SPA fallback for all other routes (exclude admin)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  conditions = {Role = ["*"]}
   force = false
 
 # Enable Netlify Identity for Decap CMS authentication
