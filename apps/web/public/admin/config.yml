@@ -1,17 +1,32 @@
 # Decap CMS Configuration
-# Backend: DecapBridge (replaces deprecated Netlify Identity)
+# Backend: DecapBridge Classic Auth
 # Users can log in with email - no GitHub account required
 
 # PRODUCTION - DecapBridge Authentication
 backend:
-  name: github
+  name: git-gateway
   repo: nitasTeam/landingpage-igtrade
   branch: main
-  base_url: https://api.decapbridge.com
-  auth_endpoint: auth
+  identity_url: https://auth.decapbridge.com/sites/387e2166-a601-43ae-b192-4a29dc8c5e45
+  gateway_url: https://gateway.decapbridge.com
+  
+  # Track who made changes
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
 
 # LOCAL DEVELOPMENT - automatically uses test-repo when running locally
 local_backend: true
+
+# Branding
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+
+# Site URL
+site_url: https://igtrade-landing.netlify.app
 
 # Media files configuration
 media_folder: "apps/web/public/images/blog"
