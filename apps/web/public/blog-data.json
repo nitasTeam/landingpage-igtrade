@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "slug": "2026-01-10-welcome",
+      "title": "Welcome to Our Blog",
+      "date": "2026-01-10T12:00:00.000Z",
+      "description": "This is a sample blog post to demonstrate the CMS functionality",
+      "author": "Infinity Globalindo",
+      "tags": [
+        "welcome",
+        "announcement"
+      ],
+      "content": "\n# Welcome to Infinity Globalindo Blog\n\nThis is a sample blog post created to demonstrate the Decap CMS integration. You can edit this post or create new ones using the admin interface at `/admin/`.\n\n## Features\n\n- **Markdown Support**: Write your content in markdown format\n- **Git-Based**: All content is stored in your repository\n- **Easy Editing**: User-friendly interface for content management\n- **Version Control**: Every change is tracked in git\n\n## Getting Started\n\n1. Navigate to `/admin/` to access the CMS\n2. Create, edit, or delete blog posts\n3. Your changes will be saved to the repository\n\nHappy blogging!\n"
+    }
+  ]
+}

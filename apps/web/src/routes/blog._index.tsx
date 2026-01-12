@@ -1,25 +1,39 @@
-import { Link, useLoaderData } from 'react-router';
-import type { Route } from './+types/blog._index';
-import { getAllPosts, getExcerpt } from '@/lib/blog.server';
+import { Link } from 'react-router';
+import { useEffect, useState } from 'react';
+import { getAllPosts, getExcerpt, type BlogPost } from '@/lib/blog';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 
-export async function loader({ }: Route.LoaderArgs) {
-    const posts = await getAllPosts();
-    return { posts };
-}
-
-export function meta({ }: Route.MetaArgs) {
-    return [
-        { title: 'Blog - Infinity Globalindo' },
-        {
-            name: 'description',
-            content: 'Latest news, insights, and updates from Infinity Globalindo.'
-        },
-    ];
-}
-
 export default function BlogIndex() {
-    const { posts } = useLoaderData<typeof loader>();
+    const [posts, setPosts] = useState<BlogPost[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadPosts() {
+            try {
+                const loadedPosts = await getAllPosts();
+                setPosts(loadedPosts);
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                setPosts([]);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        loadPosts();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-white pt-20 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D98C4]"></div>
+                    <p className="mt-4 text-slate-600">Loading blog posts...</p>
+                </div>
+            </div>
+        );
+    }
+
 
     return (
         <div className="min-h-screen bg-white pt-20">
