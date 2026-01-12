@@ -1,5 +1,6 @@
 # Netlify Configuration
 [build]
+  base = "apps/web"
   command = "npm run build"
   publish = "build/client"
   functions = "build/server"
