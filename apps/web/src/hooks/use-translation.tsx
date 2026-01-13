@@ -7,7 +7,7 @@ type Language = 'id' | 'en' | 'cn';
 interface TranslationState {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string) => any;
 }
 
 export const useTranslation = create<TranslationState>()(
@@ -27,7 +27,7 @@ export const useTranslation = create<TranslationState>()(
           }
         }
 
-        return typeof value === 'string' ? value : key;
+        return value !== undefined ? value : key;
       },
     }),
     {

@@ -4,8 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/hooks/use-translation";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
     { title: "Hubungi Kami - Infinity Globalindo" },
     {
@@ -17,6 +18,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function ContactUs() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -90,13 +92,13 @@ ${formData.message}
               color: "rgba(29, 152, 196, 1)",
             }}
           >
-            Hubungi Kami
+            {t('contact.hero.badge')}
           </span>
           <h1 className="mt-6 font-serif font-medium text-[24px] leading-[36px] sm:text-[28px] sm:leading-[42px] md:text-[32px] md:leading-[48px] lg:text-[40px] lg:leading-[60px] tracking-[0px] text-[rgba(40,40,40,1)] mb-4 sm:mb-6">
-            Mari Diskusikan Kebutuhan Bisnis Anda
+            {t('contact.hero.title')}
           </h1>
           <p className="font-sans font-normal text-[14px] sm:text-[16px] lg:text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)] mb-6 sm:mb-8">
-            Tim profesional kami siap membantu Anda menemukan solusi terbaik untuk kebutuhan impor-ekspor dan perdagangan global.
+            {t('contact.hero.description')}
           </p>
         </div>
       </section>
@@ -114,7 +116,7 @@ ${formData.message}
               className="text-left sm:text-center lg:text-left"
             >
               <h2 className="font-serif font-medium text-[20px] leading-[150%] sm:text-[24px] md:text-[28px] lg:text-[32px] tracking-[0px] text-[rgba(40,40,40,1)] mb-4 sm:mb-6">
-                Kirim Pesan
+                {t('contact.form.title')}
               </h2>
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -123,7 +125,7 @@ ${formData.message}
                       htmlFor="firstName"
                       className="text-[rgba(40,40,40,1)] font-medium text-sm sm:text-base"
                     >
-                      Nama Depan
+                      {t('contact.form.first_name')}
                     </Label>
                     <Input
                       id="firstName"
@@ -131,7 +133,7 @@ ${formData.message}
                       type="text"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      placeholder="Masukkan nama depan"
+                      placeholder={t('contact.form.placeholders.first_name')}
                       required
                       className="mt-1 sm:mt-2"
                     />
@@ -141,7 +143,7 @@ ${formData.message}
                       htmlFor="lastName"
                       className="text-[rgba(40,40,40,1)] font-medium text-sm sm:text-base"
                     >
-                      Nama Belakang
+                      {t('contact.form.last_name')}
                     </Label>
                     <Input
                       id="lastName"
@@ -149,7 +151,7 @@ ${formData.message}
                       type="text"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      placeholder="Masukkan nama belakang"
+                      placeholder={t('contact.form.placeholders.last_name')}
                       required
                       className="mt-1 sm:mt-2"
                     />
@@ -161,7 +163,7 @@ ${formData.message}
                     htmlFor="email"
                     className="text-[rgba(40,40,40,1)] font-medium text-sm sm:text-base"
                   >
-                    Email
+                    {t('contact.form.email')}
                   </Label>
                   <Input
                     id="email"
@@ -169,7 +171,7 @@ ${formData.message}
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="contoh@email.com"
+                    placeholder={t('contact.form.placeholders.email')}
                     required
                     className="mt-1 sm:mt-2"
                   />
@@ -180,7 +182,7 @@ ${formData.message}
                     htmlFor="phone"
                     className="text-[rgba(40,40,40,1)] font-medium text-sm sm:text-base"
                   >
-                    Nomor Telepon
+                    {t('contact.form.phone')}
                   </Label>
                   <Input
                     id="phone"
@@ -188,7 +190,7 @@ ${formData.message}
                     type="tel"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="+62 812-3456-7890"
+                    placeholder={t('contact.form.placeholders.phone')}
                     required
                     className="mt-1 sm:mt-2"
                   />
@@ -199,7 +201,7 @@ ${formData.message}
                     htmlFor="company"
                     className="text-[rgba(40,40,40,1)] font-medium text-sm sm:text-base"
                   >
-                    Nama Perusahaan
+                    {t('contact.form.company')}
                   </Label>
                   <Input
                     id="company"
@@ -207,7 +209,7 @@ ${formData.message}
                     type="text"
                     value={formData.company}
                     onChange={handleInputChange}
-                    placeholder="Nama perusahaan Anda"
+                    placeholder={t('contact.form.placeholders.company')}
                     className="mt-1 sm:mt-2"
                   />
                 </div>
@@ -217,7 +219,7 @@ ${formData.message}
                     htmlFor="subject"
                     className="text-[rgba(40,40,40,1)] font-medium text-sm sm:text-base"
                   >
-                    Subjek
+                    {t('contact.form.subject')}
                   </Label>
                   <Input
                     id="subject"
@@ -225,7 +227,7 @@ ${formData.message}
                     type="text"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    placeholder="Tentang apa yang ingin Anda diskusikan?"
+                    placeholder={t('contact.form.placeholders.subject')}
                     required
                     className="mt-1 sm:mt-2"
                   />
@@ -236,7 +238,7 @@ ${formData.message}
                     htmlFor="message"
                     className="text-[rgba(40,40,40,1)] font-medium text-sm sm:text-base"
                   >
-                    Pesan
+                    {t('contact.form.message')}
                   </Label>
                   <textarea
                     id="message"
@@ -244,7 +246,7 @@ ${formData.message}
                     rows={4}
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Ceritakan lebih detail tentang kebutuhan bisnis Anda..."
+                    placeholder={t('contact.form.placeholders.message')}
                     required
                     className="mt-1 sm:mt-2 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgba(29,152,196,1)] focus:border-[rgba(29,152,196,1)] resize-none text-sm sm:text-base text-black bg-white"
                   />
@@ -256,18 +258,18 @@ ${formData.message}
                   className="w-full sm:w-auto text-white px-6 sm:px-8 py-2 sm:py-3 hover:opacity-90 text-sm sm:text-base disabled:opacity-50"
                   style={{ backgroundColor: "rgba(29, 152, 196, 1)" }}
                 >
-                  {isSubmitting ? "Mengirim..." : "Kirim Pesan"}
+                  {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
                 </Button>
 
                 {submitStatus === "success" && (
                   <p className="text-green-600 text-sm mt-2">
-                    ✅ Email client dibuka! Silakan kirim email untuk melanjutkan.
+                    {t('contact.form.success')}
                   </p>
                 )}
 
                 {submitStatus === "error" && (
                   <p className="text-red-600 text-sm mt-2">
-                    ❌ Terjadi kesalahan. Silakan coba lagi.
+                    {t('contact.form.error')}
                   </p>
                 )}
               </form>
@@ -282,7 +284,7 @@ ${formData.message}
               className="text-left sm:text-center md:text-center lg:text-left"
             >
               <h2 className="font-serif font-medium text-[20px] leading-[150%] sm:text-[24px] md:text-[28px] lg:text-[32px] tracking-[0px] text-[rgba(40,40,40,1)] mb-4 sm:mb-6">
-                Informasi Kontak
+                {t('contact.info.title')}
               </h2>
 
               <div className="space-y-4 sm:space-y-6 md:grid md:grid-cols-2 md:gap-4 lg:flex lg:flex-col lg:space-y-4 lg:gap-0">
@@ -305,7 +307,7 @@ ${formData.message}
                   </div>
                   <div>
                     <h3 className="font-sans font-medium text-[16px] sm:text-[18px] leading-[150%] text-[rgba(40,40,40,1)] mb-1">
-                      Telepon
+                      {t('contact.form.phone')}
                     </h3>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)]">
                       +62 877-7555-9883
@@ -332,7 +334,7 @@ ${formData.message}
                   </div>
                   <div>
                     <h3 className="font-sans font-medium text-[16px] sm:text-[18px] leading-[150%] text-[rgba(40,40,40,1)] mb-1">
-                      Email
+                      {t('contact.form.email')}
                     </h3>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)]">
                       halo@igtrade.id
@@ -365,13 +367,13 @@ ${formData.message}
                   </div>
                   <div>
                     <h3 className="font-sans font-medium text-[16px] sm:text-[18px] leading-[150%] text-[rgba(40,40,40,1)] mb-1">
-                      Alamat
+                      {t('contact.info.address')}
                     </h3>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)]">
-                      <span className="font-medium text-[rgba(40,40,40,1)]">Office:</span> JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara, Kec. Penjaringan, Kota Adm. Jakarta Utara, DKI Jakarta, 14460
+                      <span className="font-medium text-[rgba(40,40,40,1)]">{t('contact.info.office')}</span> JL. PANTAI INDAH UTARA 2 PIK, Desa/Kelurahan Kapuk Muara, Kec. Penjaringan, Kota Adm. Jakarta Utara, DKI Jakarta, 14460
                     </p>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)] mt-2">
-                      <span className="font-medium text-[rgba(40,40,40,1)]">Workshop:</span> Ruko Kopi Mas Lantai 3, Jl Kopi 4 L, Roa Malaka Tambora, Jakarta Barat, DKI Jakarta, 11230
+                      <span className="font-medium text-[rgba(40,40,40,1)]">{t('contact.info.workshop')}</span> Ruko Kopi Mas Lantai 3, Jl Kopi 4 L, Roa Malaka Tambora, Jakarta Barat, DKI Jakarta, 11230
                     </p>
                   </div>
                 </div>
@@ -395,14 +397,14 @@ ${formData.message}
                   </div>
                   <div>
                     <h3 className="font-sans font-medium text-[16px] sm:text-[18px] leading-[150%] text-[rgba(40,40,40,1)] mb-1">
-                      Jam Operasional
+                      {t('contact.info.hours.title')}
                     </h3>
                     <p className="font-sans font-normal text-[14px] sm:text-[16px] leading-[150%] text-[rgba(136,136,136,1)]">
-                      Senin - Jumat: 08:00 - 17:00
+                      {t('contact.info.hours.weekdays')}
                       <br />
-                      Sabtu: 08:00 - 12:00
+                      {t('contact.info.hours.saturday')}
                       <br />
-                      Minggu: Tutup
+                      {t('contact.info.hours.sunday')}
                     </p>
                   </div>
                 </div>
@@ -423,7 +425,7 @@ ${formData.message}
                   >
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                   </svg>
-                  Chat via WhatsApp
+                  {t('contact.whatsapp')}
                 </a>
               </div>
             </motion.div>

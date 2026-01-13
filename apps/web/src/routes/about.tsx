@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/hooks/use-translation";
 
 export function meta({ }: Route.MetaArgs) {
+	// Note: Standard useTranslation hook works inside components only.
+	// For meta tags, we might need a separate strategy or keep English default for now.
 	return [
 		{ title: "Tentang Kami - Infinity Globalindo" },
 		{
@@ -15,6 +18,8 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 export default function About() {
+	const { t } = useTranslation();
+
 	return (
 		<div className="min-h-screen w-full bg-white">
 			{/* Hero Section */}
@@ -23,16 +28,14 @@ export default function About() {
 					backgroundColor: 'rgba(245, 245, 245, 1)',
 					color: 'rgba(29, 152, 196, 1)'
 				}}>
-					Produk Kami
+					{t('about.hero.badge')}
 				</span>
 				<div className="max-w-4xl mx-auto mt-[24px]">
 					<h1 className="font-serif font-medium text-[28px] leading-[42px] sm:text-[32px] sm:leading-[48px] lg:text-[40px] lg:leading-[60px] tracking-[0px] text-[rgba(40,40,40,1)] mb-6">
-						Perdagangan Global, Kepercayaan Lokal
+						{t('about.hero.title')}
 					</h1>
 					<p className="font-sans font-normal sm:text-[16px] lg:text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)] mb-8">
-						Sebagai pemimpin di industri impor-ekspor, dengan jaringan global yang luas dan tim profesional berpengalaman,
-						PT Infinity Globalindo Trade memahami pentingnya kualitas dan pengiriman tepat waktu. Oleh karena itu, kami berkomitmen untuk
-						menyediakan layanan impor-ekspor hardware terbaik.
+						{t('about.hero.description')}
 					</p>
 				</div>
 			</section>
@@ -49,10 +52,10 @@ export default function About() {
 							<div className="absolute bottom-6 left-6 right-6">
 								<img src="/infinity-globalindo-logo.svg" alt="Infinity Globalindo" className="h-12 w-auto mb-6" />
 								<h2 className="font-serif font-medium text-[24px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)] mb-4">
-									Visi dan Misi Kami
+									{t('about.vision.title')}
 								</h2>
 								<p className="font-sans font-normal text-[16px] leading-[150%] tracking-[0px] text-[rgba(102,102,102,1)]">
-									Menjadi mitra terpercaya dalam logistik dan perdagangan global dengan menghubungkan bisnis melalui solusi rantai pasok yang efisien.
+									{t('about.vision.desc')}
 								</p>
 							</div>
 						</div>
@@ -63,24 +66,14 @@ export default function About() {
 						}}>
 							<div className="absolute bottom-6 left-6 right-6">
 								<ul className="space-y-4">
-									<li className="flex items-start gap-3">
-										<span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
-										<span className="font-sans font-normal text-[16px] leading-[150%] tracking-[0px] text-[rgba(102,102,102,1)]">
-											Menyediakan produk berkualitas tinggi dengan efisiensi dan transparansi.
-										</span>
-									</li>
-									<li className="flex items-start gap-3">
-										<span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
-										<span className="font-sans font-normal text-[16px] leading-[150%] tracking-[0px] text-[rgba(102,102,102,1)]">
-											Membangun hubungan jangka panjang dengan klien dan pemasok di seluruh dunia.
-										</span>
-									</li>
-									<li className="flex items-start gap-3">
-										<span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
-										<span className="font-sans font-normal text-[16px] leading-[150%] tracking-[0px] text-[rgba(102,102,102,1)]">
-											Mendorong perdagangan global yang berkelanjutan dan bertanggung jawab.
-										</span>
-									</li>
+									{(t('about.vision.items') as string[]).map((item, index) => (
+										<li key={index} className="flex items-start gap-3">
+											<span className="inline-block w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+											<span className="font-sans font-normal text-[16px] leading-[150%] tracking-[0px] text-[rgba(102,102,102,1)]">
+												{item}
+											</span>
+										</li>
+									))}
 								</ul>
 							</div>
 						</div>
@@ -96,7 +89,7 @@ export default function About() {
 
 				<div className="max-w-6xl mx-auto text-left sm:text-center mt-16">
 					<h1 className="font-serif font-medium text-[28px] leading-[42px] sm:text-[32px] sm:leading-[48px] lg:text-[40px] lg:leading-[60px] tracking-[0px] text-[rgba(40,40,40,1)] mb-6">
-						Nilai yang Kami Pegang
+						{t('about.values.title')}
 					</h1>
 					<div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 						{/* Column 1 */}
@@ -109,10 +102,10 @@ export default function About() {
 						>
 							<img src="/integritas.svg" alt="Kualitas" className="h-16 w-16 mb-6 sm:mx-auto" />
 							<h3 className="font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)] mb-4">
-								Integritas
+								{t('about.values.items.integrity.title')}
 							</h3>
 							<p className="font-sans font-normal text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-								Membangun kepercayaan, kejujuran dan transparansi
+								{t('about.values.items.integrity.desc')}
 							</p>
 						</motion.div>
 
@@ -126,10 +119,10 @@ export default function About() {
 						>
 							<img src="/efisien.svg" alt="Keandalan" className="h-16 w-16 mb-6 sm:mx-auto" />
 							<h3 className="font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)] mb-4">
-								Efisiensi
+								{t('about.values.items.efficiency.title')}
 							</h3>
 							<p className="font-sans font-normal text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-								Proses pengiriman yang tepat waktu dan setiap waktu.
+								{t('about.values.items.efficiency.desc')}
 							</p>
 						</motion.div>
 
@@ -143,10 +136,10 @@ export default function About() {
 						>
 							<img src="/inovasi.svg" alt="Inovasi" className="h-16 w-16 mb-6 sm:mx-auto" />
 							<h3 className="font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)] mb-4">
-								Inovasi
+								{t('about.values.items.innovation.title')}
 							</h3>
 							<p className="font-sans font-normal text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-								Terus berkembang untuk memenuhi standar global.
+								{t('about.values.items.innovation.desc')}
 							</p>
 						</motion.div>
 
@@ -160,10 +153,10 @@ export default function About() {
 						>
 							<img src="/kemitraan.svg" alt="Kemitraan" className="h-16 w-16 mb-6 sm:mx-auto" />
 							<h3 className="font-sans font-medium text-[20px] leading-[150%] tracking-[0px] text-[rgba(40,40,40,1)] mb-4">
-								Kemitraan
+								{t('about.values.items.partnership.title')}
 							</h3>
 							<p className="font-sans font-normal text-[18px] leading-[150%] tracking-[0px] text-[rgba(136,136,136,1)]">
-								Sukses melalui kolaborasi dan pertumbuhan bersama.
+								{t('about.values.items.partnership.desc')}
 							</p>
 						</motion.div>
 					</div>
@@ -192,11 +185,10 @@ export default function About() {
 						/>
 					</div>
 					<h2 className="mt-10 font-serif font-medium text-[28px] leading-[150%] sm:text-[32px] lg:text-[40px] tracking-[0px] text-white">
-						Mari Bangun Koneksi Global Bersama
+						{t('cta.title')}
 					</h2>
 					<p className="mt-6 font-sans font-normal text-[16px] sm:text-[18px] leading-[150%] tracking-[0px] text-white">
-						Dari komponen industri hingga perlengkapan olahraga dan keamanan —
-						setiap produk kami pastikan memenuhi standar internasional.
+						{t('about.cta.description')}
 					</p>
 					<div className="mt-10">
 						<a
@@ -204,7 +196,7 @@ export default function About() {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<Button className="bg-white text-[rgba(29,152,196,1)] hover:bg-white/90">Hubungi Kami</Button>
+							<Button className="bg-white text-[rgba(29,152,196,1)] hover:bg-white/90">{t('cta.btn')}</Button>
 						</a>
 					</div>
 					<div className="pb-4 sm:pb-16" />

@@ -79,6 +79,81 @@ export const translations = {
       rights: "Hak Cipta Dilindungi.",
       privacy: "Kebijakan Privasi",
       terms: "Syarat & Ketentuan"
+    },
+    about: {
+      meta_title: "Tentang Kami - Infinity Globalindo",
+      meta_desc: "Pelajari lebih lanjut tentang Infinity Globalindo, perusahaan perdagangan internasional yang menghubungkan pasar global melalui layanan ekspor-impor berkualitas.",
+      hero: {
+        badge: "Produk Kami",
+        title: "Perdagangan Global, Kepercayaan Lokal",
+        description: "Sebagai pemimpin di industri impor-ekspor, dengan jaringan global yang luas dan tim profesional berpengalaman, PT Infinity Globalindo Trade memahami pentingnya kualitas dan pengiriman tepat waktu. Oleh karena itu, kami berkomitmen untuk menyediakan layanan impor-ekspor hardware terbaik.",
+      },
+      vision: {
+        title: "Visi dan Misi Kami",
+        desc: "Menjadi mitra terpercaya dalam logistik dan perdagangan global dengan menghubungkan bisnis melalui solusi rantai pasok yang efisien.",
+        items: [
+          "Menyediakan produk berkualitas tinggi dengan efisiensi dan transparansi.",
+          "Membangun hubungan jangka panjang dengan klien dan pemasok di seluruh dunia.",
+          "Mendorong perdagangan global yang berkelanjutan dan bertanggung jawab."
+        ]
+      },
+      values: {
+        title: "Nilai yang Kami Pegang",
+        items: {
+          integrity: { title: "Integritas", desc: "Membangun kepercayaan, kejujuran dan transparansi" },
+          efficiency: { title: "Efisiensi", desc: "Proses pengiriman yang tepat waktu dan setiap waktu." },
+          innovation: { title: "Inovasi", desc: "Terus berkembang untuk memenuhi standar global." },
+          partnership: { title: "Kemitraan", desc: "Sukses melalui kolaborasi dan pertumbuhan bersama." }
+        }
+      },
+      cta: {
+        description: "Dari komponen industri hingga perlengkapan olahraga dan keamanan — setiap produk kami pastikan memenuhi standar internasional."
+      }
+    },
+    contact: {
+      meta_title: "Hubungi Kami - Infinity Globalindo",
+      meta_desc: "Hubungi tim Infinity Globalindo untuk konsultasi produk dan layanan impor-ekspor terpercaya.",
+      hero: {
+        badge: "Hubungi Kami",
+        title: "Mari Diskusikan Kebutuhan Bisnis Anda",
+        description: "Tim profesional kami siap membantu Anda menemukan solusi terbaik untuk kebutuhan impor-ekspor dan perdagangan global."
+      },
+      form: {
+        title: "Kirim Pesan",
+        first_name: "Nama Depan",
+        last_name: "Nama Belakang",
+        email: "Email",
+        phone: "Nomor Telepon",
+        company: "Nama Perusahaan",
+        subject: "Subjek",
+        message: "Pesan",
+        placeholders: {
+          first_name: "Masukkan nama depan",
+          last_name: "Masukkan nama belakang",
+          email: "contoh@email.com",
+          phone: "+62 812-3456-7890",
+          company: "Nama perusahaan Anda",
+          subject: "Tentang apa yang ingin Anda diskusikan?",
+          message: "Ceritakan lebih detail tentang kebutuhan bisnis Anda..."
+        },
+        submit: "Kirim Pesan",
+        submitting: "Mengirim...",
+        success: "✅ Email client dibuka! Silakan kirim email untuk melanjutkan.",
+        error: "❌ Terjadi kesalahan. Silakan coba lagi."
+      },
+      info: {
+        title: "Informasi Kontak",
+        address: "Alamat",
+        office: "Office:",
+        workshop: "Workshop:",
+        hours: {
+          title: "Jam Operasional",
+          weekdays: "Senin - Jumat: 08:00 - 17:00",
+          saturday: "Sabtu: 08:00 - 12:00",
+          sunday: "Minggu: Tutup"
+        }
+      },
+      whatsapp: "Chat via WhatsApp"
     }
   },
   en: {
@@ -161,6 +236,81 @@ export const translations = {
       rights: "All Rights Reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Service"
+    },
+    about: {
+      meta_title: "About Us - Infinity Globalindo",
+      meta_desc: "Learn more about Infinity Globalindo, an international trade company connecting global markets through quality export-import services.",
+      hero: {
+        badge: "Our Products",
+        title: "Global Trade, Local Trust",
+        description: "As a leader in the import-export industry, with a vast global network and experienced professional team, PT Infinity Globalindo Trade understands the importance of quality and timely delivery. Therefore, we are committed to providing the best hardware import-export services.",
+      },
+      vision: {
+        title: "Our Vision and Mission",
+        desc: "To be a trusted partner in global logistics and trade by connecting businesses through efficient supply chain solutions.",
+        items: [
+          "Providing high-quality products with efficiency and transparency.",
+          "Building long-term relationships with clients and suppliers worldwide.",
+          "Promoting sustainable and responsible global trade."
+        ]
+      },
+      values: {
+        title: "Our Core Values",
+        items: {
+          integrity: { title: "Integrity", desc: "Building trust, honesty, and transparency." },
+          efficiency: { title: "Efficiency", desc: "Timely delivery process, every time." },
+          innovation: { title: "Innovation", desc: "Continuously evolving to meet global standards." },
+          partnership: { title: "Partnership", desc: "Success through collaboration and mutual growth." }
+        }
+      },
+      cta: {
+        description: "From industrial components to sports and security equipment — we ensure every product meets international standards."
+      }
+    },
+    contact: {
+      meta_title: "Contact Us - Infinity Globalindo",
+      meta_desc: "Contact the Infinity Globalindo team for trusted export-import product and service consultation.",
+      hero: {
+        badge: "Contact Us",
+        title: "Let's Discuss Your Business Needs",
+        description: "Our professional team is ready to help you find the best solutions for your import-export and global trade needs."
+      },
+      form: {
+        title: "Send a Message",
+        first_name: "First Name",
+        last_name: "Last Name",
+        email: "Email",
+        phone: "Phone Number",
+        company: "Company Name",
+        subject: "Subject",
+        message: "Message",
+        placeholders: {
+          first_name: "Enter first name",
+          last_name: "Enter last name",
+          email: "example@email.com",
+          phone: "+62 812-3456-7890",
+          company: "Your company name",
+          subject: "What would you like to discuss?",
+          message: "Tell us more details about your business needs..."
+        },
+        submit: "Send Message",
+        submitting: "Sending...",
+        success: "✅ Email client opened! Please send the email to proceed.",
+        error: "❌ An error occurred. Please try again."
+      },
+      info: {
+        title: "Contact Information",
+        address: "Address",
+        office: "Office:",
+        workshop: "Workshop:",
+        hours: {
+          title: "Business Hours",
+          weekdays: "Monday - Friday: 08:00 - 17:00",
+          saturday: "Saturday: 08:00 - 12:00",
+          sunday: "Sunday: Closed"
+        }
+      },
+      whatsapp: "Chat via WhatsApp"
     }
   },
   cn: {
@@ -243,6 +393,81 @@ export const translations = {
       rights: "版权所有。",
       privacy: "隐私政策",
       terms: "条款与条件"
+    },
+    about: {
+      meta_title: "关于我们 - Infinity Globalindo",
+      meta_desc: "了解更多关于 Infinity Globalindo 的信息，这是一家通过优质进出口服务连接全球市场的国际贸易公司。",
+      hero: {
+        badge: "我们的产品",
+        title: "全球贸易，本地信任",
+        description: "作为进出口行业的领导者，PT Infinity Globalindo Trade 拥有庞大的全球网络和经验丰富的专业团队，深知质量和准时交付的重要性。因此，我们要致力于提供最好的五金进出口服务。",
+      },
+      vision: {
+        title: "我们的愿景和使命",
+        desc: "通过高效的供应链解决方案连接企业，成为全球物流和贸易中值得信赖的合作伙伴。",
+        items: [
+          "以效率和透明度提供高质量的产品。",
+          "与全球客户和供应商建立长期关系。",
+          "推动可持续和负责任的全球贸易。"
+        ]
+      },
+      values: {
+        title: "我们的核心价值观",
+        items: {
+          integrity: { title: "诚信", desc: "建立信任、诚实和透明度。" },
+          efficiency: { title: "效率", desc: "每次都能准时交付。" },
+          innovation: { title: "创新", desc: "不断发展以符合国际标准。" },
+          partnership: { title: "合作", desc: "通过协作和共同成长取得成功。" }
+        }
+      },
+      cta: {
+        description: "从工业组件到运动器材及安防设备 —— 我们确保每件产品均符合国际标准。"
+      }
+    },
+    contact: {
+      meta_title: "联系我们 - Infinity Globalindo",
+      meta_desc: "联系 Infinity Globalindo 团队，咨询值得信赖的进出口产品和服务。",
+      hero: {
+        badge: "联系我们",
+        title: "让我们讨论您的业务需求",
+        description: "我们的专业团队随时准备帮助您寻找进出口和全球贸易的最佳解决方案。"
+      },
+      form: {
+        title: "发送消息",
+        first_name: "名字",
+        last_name: "姓氏",
+        email: "电子邮箱",
+        phone: "电话号码",
+        company: "公司名称",
+        subject: "主题",
+        message: "留言",
+        placeholders: {
+          first_name: "输入名字",
+          last_name: "输入姓氏",
+          email: "example@email.com",
+          phone: "+62 812-3456-7890",
+          company: "您的公司名称",
+          subject: "您想讨论什么内容？",
+          message: "请详细告诉我们您的业务需求..."
+        },
+        submit: "发送消息",
+        submitting: "发送中...",
+        success: "✅ 邮件客户端已打开！请发送邮件以继续。",
+        error: "❌ 发生错误。请重试。"
+      },
+      info: {
+        title: "联系方式",
+        address: "地址",
+        office: "办公室：",
+        workshop: "工厂：",
+        hours: {
+          title: "营业时间",
+          weekdays: "周一至周五：08:00 - 17:00",
+          saturday: "周六：08:00 - 12:00",
+          sunday: "周日：休息"
+        }
+      },
+      whatsapp: "通过 WhatsApp 聊天"
     }
   }
 };
