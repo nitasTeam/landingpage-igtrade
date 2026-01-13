@@ -42,10 +42,11 @@ collections:
     editor:
       preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", hint: "Keep it under 60 characters for SEO" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false, hint: "SEO meta description - keep it 150-160 characters" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "Recommended size: 1200x630px for social sharing" }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string", required: false, hint: "Describe the image for accessibility and SEO" }
       - { label: "Author", name: "author", widget: "string", default: "Infinity Globalindo" }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false, hint: "Add relevant keywords/topics" }
       - { label: "Body", name: "body", widget: "markdown" }

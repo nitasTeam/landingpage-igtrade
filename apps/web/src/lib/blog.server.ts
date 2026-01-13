@@ -78,3 +78,37 @@ export function getExcerpt(content: string, length = 150): string {
 
     return plainText.substring(0, length).trim() + '...';
 }
+
+// Generate sitemap data for all blog posts
+export async function generateSitemapData() {
+    const posts = await getAllPosts();
+    const baseUrl = 'https://igtrade.id';
+
+    const staticPages = [
+        { url: '/', lastmod: new Date().toISOString(), priority: '1.0', changefreq: 'weekly' },
+        { url: '/about', lastmod: new Date().toISOString(), priority: '0.8', changefreq: 'monthly' },
+        { url: '/contact-us', lastmod: new Date().toISOString(), priority: '0.8', changefreq: 'monthly' },
+        { url: '/blog', lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
+    ];
+
+    const blogPosts = posts.map(post => ({
+        url: `/blog/${post.slug}`,
+        lastmod: post.date,
+        priority: '0.7',
+        changefreq: 'monthly',
+    }));
+
+    const allPages = [...staticPages, ...blogPosts];
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allPages.map(page => `  <url>
+    <loc>${baseUrl}${page.url}</loc>
+    <lastmod>${new Date(page.lastmod).toISOString()}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+    return sitemap;
+}

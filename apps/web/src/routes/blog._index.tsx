@@ -1,7 +1,13 @@
 import { Link } from 'react-router';
 import { useEffect, useState } from 'react';
-import { getAllPosts, getExcerpt, type BlogPost } from '@/lib/blog';
+import type { BlogPost } from '@/lib/blog.server'; // Type import is safe
+import { useSEO } from '@/hooks/use-seo';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { getExcerpt } from '@/lib/blog'; // We need a client-side version of this, or move it.
+// Actually, getExcerpt in blog.server.ts is a pure utility function (string manipulation), 
+// but importing it from a .server file might still trigger bundler issues if the file contains fs imports at the top.
+// It's safer to inline the excerpt logic or move it to a shared utils file.
+
 
 export default function BlogIndex() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -10,7 +16,11 @@ export default function BlogIndex() {
     useEffect(() => {
         async function loadPosts() {
             try {
-                const loadedPosts = await getAllPosts();
+                // Fetch the static JSON file generated at build time
+                const response = await fetch('/blog-data.json');
+                if (!response.ok) throw new Error('Failed to load blog data');
+
+                const loadedPosts = await response.json();
                 setPosts(loadedPosts);
             } catch (error) {
                 console.error('Error loading blog posts:', error);
@@ -22,6 +32,14 @@ export default function BlogIndex() {
 
         loadPosts();
     }, []);
+
+    // SEO: Update meta tags for blog listing page
+    useSEO({
+        title: 'Blog - Latest Insights & Industry Updates | Infinity Globalindo',
+        description: 'Discover the latest news, industry trends, and expert insights on global trade, import-export, and international business from the Infinity Globalindo team.',
+        url: '/blog',
+        type: 'website',
+    });
 
     if (loading) {
         return (
@@ -84,6 +102,7 @@ export default function BlogIndex() {
                                                 src={post.image}
                                                 alt={post.title}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                                loading="lazy"
                                             />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-slate-300">
@@ -92,14 +111,17 @@ export default function BlogIndex() {
                                         )}
 
                                         {/* Date Badge */}
-                                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-xs font-bold text-slate-900 shadow-sm flex items-center gap-1.5">
+                                        <time
+                                            dateTime={post.date}
+                                            className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-xs font-bold text-slate-900 shadow-sm flex items-center gap-1.5"
+                                        >
                                             <Calendar className="w-3.5 h-3.5 text-[#1D98C4]" />
                                             {new Date(post.date).toLocaleDateString('en-US', {
                                                 month: 'short',
                                                 day: 'numeric',
                                                 year: 'numeric'
                                             })}
-                                        </div>
+                                        </time>
                                     </div>
 
                                     {/* Content */}
@@ -123,7 +145,7 @@ export default function BlogIndex() {
                                         </h2>
 
                                         <div className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                                            {post.description || getExcerpt(post.content)}
+                                            {post.description || (post.content ? post.content.substring(0, 150) + '...' : '')}
                                         </div>
 
                                         <div className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between">

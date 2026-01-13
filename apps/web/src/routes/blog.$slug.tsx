@@ -1,7 +1,9 @@
 import { useParams, Link, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
-import { getPostBySlug, type BlogPost } from '@/lib/blog';
+import type { BlogPost } from '@/lib/blog.server';
 import { MarkdownRenderer } from '@/components/markdown-renderer';
+import { BlogSocialShare } from '@/components/blog-social-share';
+import { useSEO, StructuredData } from '@/hooks/use-seo';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
 
 export default function BlogPost() {
@@ -10,6 +12,7 @@ export default function BlogPost() {
     const [post, setPost] = useState<BlogPost | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const baseUrl = 'https://igtrade.id';
 
     useEffect(() => {
         async function loadPost() {
@@ -21,15 +24,20 @@ export default function BlogPost() {
 
             try {
                 setLoading(true);
-                const loadedPost = await getPostBySlug(slug);
+                // Fetch the static JSON file
+                const response = await fetch('/blog-data.json');
+                if (!response.ok) throw new Error('Failed to load blog data');
 
-                if (!loadedPost) {
+                const allPosts: BlogPost[] = await response.json();
+                const foundPost = allPosts.find(p => p.slug === slug);
+
+                if (!foundPost) {
                     setError('Blog post not found');
                     setLoading(false);
                     return;
                 }
 
-                setPost(loadedPost);
+                setPost(foundPost);
                 setError(null);
             } catch (err) {
                 console.error('Error loading blog post:', err);
@@ -41,6 +49,20 @@ export default function BlogPost() {
 
         loadPost();
     }, [slug]);
+
+    // SEO: Update meta tags when post loads
+    const excerpt = post ? (post.description || (post.content ? post.content.substring(0, 155) + '...' : '')) : undefined;
+
+    useSEO({
+        title: post ? `${post.title} - Infinity Globalindo Blog` : 'Loading...',
+        description: excerpt,
+        image: post?.image,
+        url: `/blog/${slug}`,
+        type: 'article',
+        publishedTime: post?.date,
+        author: post?.author || 'Infinity Globalindo',
+        tags: post?.tags,
+    });
 
     if (loading) {
         return (
@@ -71,8 +93,64 @@ export default function BlogPost() {
         );
     }
 
+    // JSON-LD structured data
+    const structuredData = post ? {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'BlogPosting',
+                headline: post.title,
+                description: excerpt,
+                image: post.image ? `${baseUrl}${post.image}` : `${baseUrl}/infinity-globalindo-logo.svg`,
+                datePublished: post.date,
+                dateModified: post.date,
+                author: {
+                    '@type': 'Person',
+                    name: post.author || 'Infinity Globalindo',
+                },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'Infinity Globalindo',
+                    logo: {
+                        '@type': 'ImageObject',
+                        url: `${baseUrl}/infinity-globalindo-logo.svg`,
+                    },
+                },
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': `${baseUrl}/blog/${post.slug}`,
+                },
+            },
+            {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Home',
+                        item: baseUrl,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Blog',
+                        item: `${baseUrl}/blog`,
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 3,
+                        name: post.title,
+                        item: `${baseUrl}/blog/${post.slug}`,
+                    },
+                ],
+            },
+        ],
+    } : null;
+
     return (
         <div className="min-h-screen bg-white font-sans">
+            {/* Structured Data */}
+            {structuredData && <StructuredData data={structuredData} />}
             {/* Header/Hero Section */}
             <section className="relative pt-32 pb-16 px-4 overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-slate-50">
@@ -80,6 +158,19 @@ export default function BlogPost() {
                 </div>
 
                 <div className="relative max-w-4xl mx-auto z-10">
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+                        <Link to="/" className="hover:text-[#1D98C4] transition-colors">
+                            Home
+                        </Link>
+                        <span className="mx-2">/</span>
+                        <Link to="/blog" className="hover:text-[#1D98C4] transition-colors">
+                            Blog
+                        </Link>
+                        <span className="mx-2">/</span>
+                        <span className="text-slate-900 font-medium truncate max-w-xs">{post.title}</span>
+                    </nav>
+
                     <Link
                         to="/blog"
                         className="inline-flex items-center text-slate-500 hover:text-[#1D98C4] font-medium mb-8 transition-colors group"
@@ -92,14 +183,17 @@ export default function BlogPost() {
 
                     {/* Meta Top */}
                     <div className="flex flex-wrap items-center gap-4 text-sm font-medium text-slate-500 mb-6">
-                        <span className="flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-slate-100 shadow-sm text-slate-700">
+                        <time
+                            dateTime={post.date}
+                            className="flex items-center gap-1.5 bg-white px-3 py-1 rounded-full border border-slate-100 shadow-sm text-slate-700"
+                        >
                             <Calendar className="w-3.5 h-3.5 text-[#1D98C4]" />
                             {new Date(post.date).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric',
                             })}
-                        </span>
+                        </time>
                         {post.tags && post.tags.length > 0 && post.tags.map((tag) => (
                             <span
                                 key={tag}
@@ -137,6 +231,7 @@ export default function BlogPost() {
                                 src={post.image}
                                 alt={post.title}
                                 className="absolute inset-0 w-full h-full object-cover"
+                                loading="eager"
                             />
                         </div>
                     </div>
@@ -149,6 +244,15 @@ export default function BlogPost() {
                     <article className="prose prose-lg prose-slate hover:prose-a:text-[#1D98C4] max-w-none prose-headings:font-serif prose-headings:font-bold prose-img:rounded-2xl prose-img:shadow-lg">
                         <MarkdownRenderer content={post.content} />
                     </article>
+
+                    {/* Social Share Section */}
+                    <div className="mt-12 pt-8 border-t border-slate-100">
+                        <BlogSocialShare
+                            url={`${baseUrl}/blog/${post.slug}`}
+                            title={post.title}
+                            description={excerpt}
+                        />
+                    </div>
 
                     {/* Footer / Share / Back */}
                     <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6">

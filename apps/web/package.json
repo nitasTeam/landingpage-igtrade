@@ -3,11 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/generate-blog-data.cjs",
+    "prebuild": "npx tsx scripts/generate-blog-data.ts && npx tsx scripts/generate-sitemap.ts",
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "generate:blog": "npx tsx scripts/generate-blog-data.ts",
+    "generate:sitemap": "npx tsx scripts/generate-sitemap.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
